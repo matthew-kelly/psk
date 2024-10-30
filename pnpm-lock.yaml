@@ -67,7 +67,7 @@ importers:
         specifier: ^3.2.6
         version: 3.2.7(prettier@3.3.3)(svelte@5.1.5)
       prettier-plugin-tailwindcss:
-        specifier: ^0.6.5
+        specifier: ^0.6.8
         version: 0.6.8(prettier-plugin-svelte@3.2.7(prettier@3.3.3)(svelte@5.1.5))(prettier@3.3.3)
       slice-machine-ui:
         specifier: ^2.10.0
