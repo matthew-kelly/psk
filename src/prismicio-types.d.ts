@@ -81,19 +81,55 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 
 export type AllDocumentTypes = PageDocument;
 
+/**
+ * Primary content in *RichText → Default → Primary*
+ */
+export interface RichTextSliceDefaultPrimary {
+	/**
+	 * Content field in *RichText → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: rich_text.default.primary.content
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for RichText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RichTextSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<RichTextSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *RichText*
+ */
+type RichTextSliceVariation = RichTextSliceDefault;
+
+/**
+ * RichText Shared Slice
+ *
+ * - **API ID**: `rich_text`
+ * - **Description**: RichText
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RichTextSlice = prismic.SharedSlice<'rich_text', RichTextSliceVariation>;
+
 declare module '@prismicio/client' {
 	interface CreateClient {
-		(
-			repositoryNameOrEndpoint: string,
-			options?: prismic.ClientConfig
-		): prismic.Client<AllDocumentTypes>;
+		(repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
 	}
 
 	interface CreateWriteClient {
-		(
-			repositoryNameOrEndpoint: string,
-			options: prismic.WriteClientConfig
-		): prismic.WriteClient<AllDocumentTypes>;
+		(repositoryNameOrEndpoint: string, options: prismic.WriteClientConfig): prismic.WriteClient<AllDocumentTypes>;
 	}
 
 	interface CreateMigration {
@@ -101,6 +137,15 @@ declare module '@prismicio/client' {
 	}
 
 	namespace Content {
-		export type { PageDocument, PageDocumentData, PageDocumentDataSlicesSlice, AllDocumentTypes };
+		export type {
+			PageDocument,
+			PageDocumentData,
+			PageDocumentDataSlicesSlice,
+			AllDocumentTypes,
+			RichTextSlice,
+			RichTextSliceDefaultPrimary,
+			RichTextSliceVariation,
+			RichTextSliceDefault,
+		};
 	}
 }
