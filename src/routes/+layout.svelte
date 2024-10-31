@@ -1,9 +1,12 @@
 <script lang="ts">
 	import '../app.css';
-
 	import { page } from '$app/stores';
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { repositoryName } from '$lib/prismicio';
+	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	// Supports weights 100-900
+	import '@fontsource-variable/dm-sans';
 
 	let { children } = $props();
 </script>
@@ -22,8 +25,10 @@
 	{/if}
 </svelte:head>
 
-{@render children?.()}
-<!-- <main>
-</main> -->
+<Header settings={$page.data.settings}></Header>
+<main>
+	{@render children?.()}
+</main>
+<Footer settings={$page.data.settings}></Footer>
 
 <PrismicPreview {repositoryName} />

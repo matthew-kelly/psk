@@ -2,9 +2,9 @@
 	import type { Content } from '@prismicio/client';
 	import { PrismicRichText } from '@prismicio/svelte';
 
-	export let slice: Content.RichTextSlice;
+	let { slice }: { slice: Content.RichTextSlice } = $props();
 </script>
 
-<div class="prose prose-lg prose-slate w-full">
+<div class="prose prose-lg prose-slate prose-invert w-full">
 	<PrismicRichText field={slice.primary.content} />
 </div>
