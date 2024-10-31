@@ -9,16 +9,8 @@
 					{
 						"type": "heading2",
 						"content": {
-							"text": "What a cool effect this is",
-							"spans": [
-								{
-									"type": "em",
-									"start": 7,
-									"end": 18
-								}
-							]
-						},
-						"direction": "ltr"
+							"text": "Trace"
+						}
 					}
 				]
 			},
